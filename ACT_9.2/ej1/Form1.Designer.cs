@@ -168,6 +168,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Ejercicio 1";
             FormClosing += Form1_FormClosing;
+            Load += Form1_Load;
             ResumeLayout(false);
             PerformLayout();
         }

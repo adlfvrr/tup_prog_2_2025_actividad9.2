@@ -128,4 +128,22 @@ public partial class Form1 : Form
             if (fs != null) { fs.Close(); }
         }
     }
+
+    private void Form1_Load(object sender, EventArgs e)
+    {
+        FileStream fs = null;
+        try {
+            fs = new FileStream("ejemplo.dat", FileMode.OpenOrCreate, FileAccess.Read);
+#pragma warning disable SYSLIB0011 // El tipo o el miembro están obsoletos
+            BinaryFormatter bf = new BinaryFormatter();
+#pragma warning restore SYSLIB0011 // El tipo o el miembro están obsoletos
+            this.multas = (List<IExportable>)bf.Deserialize(fs);
+        }
+        catch(Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+        finally { if (fs != null) fs.Close(); }
+        btnActualizar.PerformClick();
+        }
 }
